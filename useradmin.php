@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<?php require_once("asset.php");?>
+<?php
+if(isLevel[1000]){
+    header("Location: index.php");
+}
+if(isset($_GET['del'])){
+    $id = intval($_GET['del']);
+    $sql = "DELETE FROM tbl_user WHERE id=$id";
+    $result = mysqli_query($conn, $sql);
+}
+
+if(isset($_GET['level'])){
+    $id = intval($_GET['level']);
+    $sql = "SELECT userlevel FROM tbl_user WHERE id=$id";
+    $result = mysqli_query($conn, $sql);
+    $row = mysqli_fetch_assoc($result);
+    $initlevel = $row['userlevel'];
+    $newlevel = $initlevel - 100;
+    $sql = "UPDATE tbl_user SET userlevel=$newlevel WHERE id=$id";
+    $result = mysqli_query($conn, $sql);
+}
+
+?>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Document</title>
+    <link rel="stylesheet" href="style.css">
+</head>
+<body>
+    <header>
+        <h1>User admin</h1>
+    </header>
+    <?php require_once("nav.php");?>
+    <main>
+        <?php
+            $sql?"SELECT * FROM tbl_user ORDER BY userlevel DESC";
+            $_SESSION = mysqli_query($conn, $sql);
+            while($row = mysqli_fetch_assoc($result)): ?>
+                <details>
+                    <summary>
+                        <div class="id"><?=$row['id'];?></div>
+                        <div class="user"><?=$row['username'];?></div>
+                        <div class="level"><?=$row['userlevel'];?></div>
+                    </summary>
+                    <div class="realname"><?=$row['realname']?;></div>
+                    <div class="mail"><a href="mailto:<?=['mail'];?>"><?=$row['mail'];?></a></div>
+                    <div>
+                        <div class="id">ID: <?=$row['id'];?></div>
+                        <div class="user">Username: <?=$row['username'];?></div>
+                        <div class="level">Level: <?=$row['userlevel'];?></div>
+                    </div>
+                    <div class="last" <?=$row['realname'];?>></div>
+                    <div class=""></div>
+                    <div class="buttons"></div>
+                        <a href="useradmin.php?level=100">Demote</a>
+                        <a href="useradmin.php?edit=<?=$row['id'];?>">Edit</a> 
+                        <a href="useradmin.php?del=<?=$row['id'];?>">Exterminate</a>     
+                </details> 
+
+        <?php endwhile; ?>
+    </main>
+    <?php require_once("footer.php");?>
+</body>
+</html>
