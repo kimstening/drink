@@ -61,8 +61,8 @@ footer{
 }
 
 dialog{
-    width: clamp(50%, 500px, 80%);
-    height: clamp(30%, 200px, 50%);
+    width: 100%;
+    height: 100%;
     background: var(--clr_back_footer);
     position:absolute;
     padding: 1rem;
@@ -73,7 +73,7 @@ dialog{
     place-content: center;
 }
 
-dialog_form{
+dialog form{
     padding: 2rem;
     background: rgb(255, 253, 247);
     width: 100%;
@@ -87,6 +87,17 @@ summary{
     width: 100%;
     background: #0003;
     padding: .5rem;
+}
+
+.filler{
+    flew-grow: 5;
+}
+
+pre{
+    font: 1.2 rem system-ui;
+    padding: 1rem;
+    background: #fff4;
+    text-indent: 0;
 }
 
 .id{
@@ -113,6 +124,8 @@ summary{
 }
 
 details{
+    display: flex;
+    flex-direction: column;
     background: #0001;
     width: 50%;
     margin-left: auto;
@@ -139,5 +152,76 @@ details .buttons{
     }
     & a:hover{
         background: #0005;
+    }
+}
+
+.invalid{
+    border: 2px solid red;
+}
+
+:root {
+    --formborder: rgb(0, 0, 0, .5);
+    --formback: rgb(0, 0, 0, .1);
+    --formlabelcolor: rgb(0, 0, 0, .6);
+}
+
+form{
+    position: relative;
+    display: flex;
+    flex-direction: column;
+    width: 40rem;
+    padding: .5rem;
+    background: var(--formback);
+    border-radius: .6rem;
+    margin-left: auto;
+    margin-right: auto;
+}
+
+input, select, textarea{
+    font: 1.1rem system-ui;
+    padding: .8rem;
+    border: 1px solid var(--formborder);
+    border-radius: .3rem;
+    &:focus{
+        outline: none;
+        border: 1px solid var(--formborder);
+    }
+    &:invalid{
+        border: 2px solid red;
+    }   
+}
+
+label{
+    position: relative;
+    top: .9rem;
+    left: .5rem;
+    font: .6rem system-ui;
+    color: var(--formlabelcolor);
+}
+
+input[type="submit"], input[type="button"], button{
+    margin-top: 1rem;
+    margin-bottom: .6rem;
+    padding: .5rem;
+}
+
+.ingredients, .recipe{
+    padding: .6rem;
+    background: #0001;
+    margin-top: .6rem;
+}
+
+a.addDrink{
+    text-decoration: none;
+    padding: .6rem 1rem;
+    background: #0002;
+    border: 1px solid #0006;
+    border-radius: 10px;
+    width: fit-content;
+    font: bold 1.4rem system-ui;
+    color: #000;
+    &:hover{
+        background: #2266;
+        color: #fff; 
     }
 }

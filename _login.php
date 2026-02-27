@@ -10,14 +10,14 @@ if(isset($_GET['logout'])){
     header("Location: index.php");
 }
 
-if(isset($__POST['btn_login'])){
+if(isset($_POST['btn_login'])){
     $user = $_POST['user'];
-    $pass = password_hash($_POST['pass']);
-    $sql = "SELECT * FROM tbl_user WHERE (username = '$user' AND password='$pass')";
+    $pass = md5($_POST['pass']);
+    $sql = "SELECT * FROM tbl_user WHERE ((username = '$user') AND (password='$pass'))";
     $result = mysqli_query($conn, $sql);
     if(mysqli_num_rows($result)===1){
         $row = mysqli_fetch_assoc($result);
-        $_SESSION['mess'] = "login succefull";
+        $_SESSION['mess'] = "login succefull!";
         $_SESSION['name'] = $row['realname'];
         $_SESSION['level'] = $row['userlevel'];
         $_SESSION['id'] = $row['id'];

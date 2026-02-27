@@ -26,7 +26,7 @@ if(isset($_POST['btn_reg'])){
         <h1>Thank you for regestering user!</h1>
         <p>The admin have to approve the user before you can login. A mail will be sent to the registered email when approved</p>
     <?php else: ?>
-    <form action="regeister.php" method="POST">
+    <form action="register.php" method="POST">
         <label for="username">USERNAME</label>
         <input type="text" name="username" id="username" placeholder="Preffered username" required>
         <label for="realname">Real name</label>
